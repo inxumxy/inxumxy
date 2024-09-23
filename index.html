@@ -2,27 +2,27 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Mobil qurilmalar uchun o'lchov -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Namoz Vaqtlari va Kapalaklar Animatsiyasi</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0; /* Dastlabki body marginlarini olib tashlaymiz */
-            position: relative; /* Pozitsiya kontekstini belgilash */
-            overflow: hidden; /* Skrollni o'chirish */
-            width: 100vw; /* To'liq viewport kengligi */
-            height: 100vh; /* To'liq viewport balandligi */
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
         }
         .background {
-            position: fixed; /* Orqa fonda rasmni joylashtirish */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-image: url('pic/3.jpg');
             background-size: cover;
-            z-index: 0; /* Orqa fondni boshqa elementlardan pastda joylashtirish */
+            z-index: 0;
         }
         .prayer-times {
             margin: 20px auto;
@@ -31,54 +31,40 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
-            position: relative; /* Kapalaklarni joylashtirish uchun */
-            z-index: 1; /* Buni orqa fondan yuqoriroq joylashtirish */
-            overflow: hidden; /* Menularni o'z ichiga olish uchun */
+            position: relative;
+            z-index: 1;
         }
         footer {
             margin-top: 20px;
             font-size: 14px;
             color: #555;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.8); /* Oq rang, lekin shaffof */
             padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
             z-index: 1; /* Orqa fondan yuqoriroq joylashtirish */
+            position: relative; /* Pozitsiya kontekstini belgilash */
         }
         .butterfly {
             position: absolute;
             width: 50px;
             height: 30px;
-            z-index: 0; /* Boshqa kontentlardan pastda joylashgan */
-            animation: flutter 4s infinite; /* Kapalakni qimirlatish */
+            z-index: 0;
+            animation: flutter 4s infinite;
         }
         .wing {
             position: absolute;
             width: 40px;
             height: 20px;
             border-radius: 50%;
-            opacity: 0.7; /* Shaffoflikni sozlash */
-            animation: flap 0.5s infinite alternate; /* Qanotlarning qimirlagan animatsiyasi */
-        }
-        .wing.left {
-            background: rgba(255, 105, 180, 0.5); /* Chap qanotning yumshoq rangi */
-            transform: rotate(-30deg);
-            left: 0;
-            top: -8px;
-        }
-        .wing.right {
-            background: rgba(255, 105, 180, 0.5); /* O'ng qanotning yumshoq rangi */
-            transform: rotate(30deg);
-            right: 0;
-            top: -8px;
+            opacity: 0.7;
+            animation: flap 0.5s infinite alternate;
         }
         .body {
             position: absolute;
-            width: 3px; /* Tanani ingichka qilish */
+            width: 3px;
             height: 30px;
-            background-color: #333; /* Tananing rangi */
-            border-radius: 3px; /* Yumshoq qirralar */
-            left: 22px; /* Tanani qanotlar o'rtasida joylashtirish */
+            background-color: #333;
+            border-radius: 3px;
+            left: 22px;
             top: 0;
         }
         @keyframes flutter {
@@ -86,7 +72,7 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-7px); /* Kapalakni yuqoriga qimirlatish */
+                transform: translateY(-7px);
             }
         }
         @keyframes flap {
@@ -100,7 +86,7 @@
     </style>
 </head>
 <body>
-    <div class="background"></div> <!-- Orqa fonda rasm -->
+    <div class="background"></div>
     
     <div class="prayer-times">
         <h2>Namoz Vaqtlari</h2>
@@ -204,6 +190,14 @@
 
         // Kapalaklarni yaratish
         const butterflyCount = 25;
+        const colors = [
+            'rgba(255, 105, 180, 0.5)', // Pink
+            'rgba(135, 206, 250, 0.5)', // Light Blue
+            'rgba(255, 215, 0, 0.5)',   // Gold
+            'rgba(0, 255, 127, 0.5)',   // Spring Green
+            'rgba(255, 69, 0, 0.5)',    // Red Orange
+            'rgba(138, 43, 226, 0.5)'   // Blue Violet
+        ];
 
         for (let i = 0; i < butterflyCount; i++) {
             const butterfly = document.createElement('div');
@@ -214,9 +208,11 @@
             // Qanotlarni yaratish
             const leftWing = document.createElement('div');
             leftWing.className = 'wing left';
+            leftWing.style.background = colors[Math.floor(Math.random() * colors.length)]; // Tasodifiy rang
 
             const rightWing = document.createElement('div');
             rightWing.className = 'wing right';
+            rightWing.style.background = colors[Math.floor(Math.random() * colors.length)]; // Tasodifiy rang
 
             const body = document.createElement('div');
             body.className = 'body';
@@ -231,18 +227,17 @@
             updateCities();
         });
 
-        // Sahifani yangilash funksiyasi
         let startY = 0;
-        let threshold = 200; // Barmoq harakatining minimal masofasi
+        let threshold = 200;
 
         document.addEventListener('touchstart', (event) => {
-            startY = event.touches[0].clientY; // Barmoq bosilganda joylashuvni saqlash
+            startY = event.touches[0].clientY;
         });
 
         document.addEventListener('touchend', (event) => {
-            const endY = event.changedTouches[0].clientY; // Barmoq olinganda joylashuvni olish
-            if (endY - startY > threshold) { // Agar barmoq pastga harakat qilsa
-                location.reload(); // Sahifani yangilash
+            const endY = event.changedTouches[0].clientY;
+            if (endY - startY > threshold) {
+                location.reload();
             }
         });
     </script>
