@@ -3,38 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prayer Time Website</title>
+    <title>Namoz Vaqtini Ko'rsatadigan Website</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Prayer Time Website</h1>
-    </header>
-    <main>
-        <section id="location-input">
-            <h2>Enter Your Location</h2>
-            <form>
-                <label for="latitude">Latitude:</label>
-                <input type="number" id="latitude" name="latitude" required>
-                <label for="longitude">Longitude:</label>
-                <input type="number" id="longitude" name="longitude" required>
-                <label for="timezone">Time Zone:</label>
-                <input type="number" id="timezone" name="timezone" required>
-                <button type="submit">Get Prayer Times</button>
-                <button id="auto-locate">Auto-Locate</button>
-            </form>
-        </section>
-        <section id="prayer-times">
-            <h2>Prayer Times</h2>
-            <ul>
-                <li><span>Fajr:</span> <span id="fajr"></span></li>
-                <li><span>Dhuhr:</span> <span id="dhuhr"></span></li>
-                <li><span>Asr:</span> <span id="asr"></span></li>
-                <li><span>Maghrib:</span> <span id="maghrib"></span></li>
-                <li><span>Isha:</span> <span id="isha"></span></li>
-            </ul>
-        </section>
-    </main>
+    <div class="container">
+        <header>
+            <h1>Namoz Vaqtini Ko'rsatadigan Website</h1>
+        </header>
+        <main>
+            <div class="prayer-times">
+                <h2>Fajr: <span id="fajr"></span></h2>
+                <h2>Dhuhr: <span id="dhuhr"></span></h2>
+                <h2>Asr: <span id="asr"></span></h2>
+                <h2>Maghrib: <span id="maghrib"></span></h2>
+                <h2>Isha: <span id="isha"></span></h2>
+            </div>
+            <div class="location-detector">
+                <button id="detect-location">Automatic Location Detection</button>
+                <select id="timezone">
+                    <option value="">Select Timezone</option>
+                    <!-- Timezone options will be generated dynamically using JavaScript -->
+                </select>
+            </div>
+        </main>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
