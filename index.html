@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Time Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Prayer Time Website</h1>
+    </header>
+    <main>
+        <section id="location-input">
+            <h2>Enter Your Location</h2>
+            <form>
+                <label for="latitude">Latitude:</label>
+                <input type="number" id="latitude" name="latitude" required>
+                <label for="longitude">Longitude:</label>
+                <input type="number" id="longitude" name="longitude" required>
+                <label for="timezone">Time Zone:</label>
+                <input type="number" id="timezone" name="timezone" required>
+                <button type="submit">Get Prayer Times</button>
+            </form>
+        </section>
+        <section id="prayer-times">
+            <h2>Prayer Times</h2>
+            <ul>
+                <li><span>Fajr:</span> <span id="fajr"></span></li>
+                <li><span>Dhuhr:</span> <span id="dhuhr"></span></li>
+                <li><span>Asr:</span> <span id="asr"></span></li>
+                <li><span>Maghrib:</span> <span id="maghrib"></span></li>
+                <li><span>Isha:</span> <span id="isha"></span></li>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
